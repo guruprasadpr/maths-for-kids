@@ -1,0 +1,75 @@
+import React, {useState, Component} from 'react';
+import logo from './logo.svg';
+import './App.css';
+
+function getRandom(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+function Box1(props){
+  return (
+    <input  class="box" value={props.val}  readOnly  />
+  )
+}
+
+function ResBox(props){
+  return (
+     <input class="resbox" id="result"  />
+  )
+}
+
+const validateResult =(props) => {
+  alert(props);
+}
+
+  function App() {
+  //this.state = {value: ''};
+   const value1 = getRandom(1,9)
+   const value2 = getRandom(1,9)
+  //const [result,setCounter] = useState()
+  //const incrementCounter = (value1,value2) => setCounter(counter+incr)
+   //result = value1 + value2
+  return (
+  <div className="App">
+    <header className="App-header">
+    <p>
+     VARDHAN G
+     </p>
+<form  onSubmit={validateResult}>
+    <div >
+       <Box1 val={value1}/>
+       <Box1 val="+"/>
+       <Box1 val={value2}/>
+       <Box1 val="=" />
+       <input class="resbox" id="result"  />
+       <br/>
+       <input type="submit" value="Submit" />
+    </div>
+</form>
+     </header>
+  </div>
+   )
+}
+
+export default App;
+
+/*
+return (
+  <div className="App">
+    <header className="App-header">
+      <img src={logo} className="App-logo" alt="logo" />
+      <p>
+        Edit <code>src/App.js</code> and save to reload.
+      </p>
+      <a
+        className="App-link"
+        href="https://reactjs.org"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Learn React
+      </a>
+    </header>
+  </div>
+);
+*/
