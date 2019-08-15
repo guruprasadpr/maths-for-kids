@@ -32,8 +32,8 @@ function wait(ms){
 export default class App extends React.Component {
   //this.state = {value: ''};
   state = {
-    value1 : getRandom(1,7),
-    value2 : getRandom(1,5),
+    value1 : getRandom(1,10),
+    value2 : getRandom(1,10),
     result : '',
     message: ''
   }
@@ -54,8 +54,8 @@ export default class App extends React.Component {
   refreshPage =(event) =>{
     //window.location.reload();
     this.setState({
-      value1 : getRandom(1,7),
-      value2 : getRandom(1,5),
+      value1 : getRandom(1,10),
+      value2 : getRandom(1,10),
       result : '',
       message: ''
     })
