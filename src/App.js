@@ -169,7 +169,6 @@ class Substraction extends Component{
         this.setState(getInitial(subInp))
       }
 
-
      render(){
        return (
          <div className="App">
@@ -198,28 +197,80 @@ class Substraction extends Component{
      }
 }
 
+class Comparison extends Component{
+      state = getInitial(addInp)
+      validateResult =(event) => {
+        event.preventDefault()
+        const v1 = this.state.value1
+        const v2 = this.state.value2
+        const res = (this.state.result === '')? '>' : this.state.result
+        if ((v1 === v2 &&  res === "=") || (v1 < v2 && res ==="<") || (v1>v2 && res ===">")){
+          this.setState({message: 'Correct'})
+        }else{
+          this.setState({message: 'Wrong'})
+        }
+      }
+
+      refreshPage =(event) =>{
+        this.setState(getInitial(addInp))
+      }
+
+     render(){
+       return (
+         <div className="App">
+           <header className="App-header">
+      <form  onSubmit={this.validateResult}>
+          <div className="">
+             <Box1 val={this.state.value1}/>
+              <select className="resbox"
+                      value={this.state.result}
+                      onChange={event => this.setState({result: event.target.value})}>
+                <option value=">">&gt;</option>
+                <option value="<">&lt;</option>
+                <option value="=">=</option>
+              </select>
+              &nbsp;&nbsp;&nbsp;&nbsp;
+              <Box1 val={this.state.value2}/>
+              <br/>
+              <Box2  val={this.state.message} />
+              <br/><br/>
+              <input  type="submit" value="Submit" />
+         </div>
+        </form>
+            &nbsp;<button type="button" onClick={this.refreshPage}>Next</button>
+            </header>
+         </div>
+       )
+     }
+}
+
 
 export default class App extends React.Component {
   state = {
    showAddition: false,
    showMultiplication: false,
-   showSubstraction: false
+   showSubstraction: false,
+   showComparison: false
 }
 
   handleAddClick= (props) => {
-    this.setState({showAddition: true, showMultiplication:false, showSubstraction: false})
+    this.setState({showAddition: true, showComparison: false, showMultiplication:false, showSubstraction: false})
   }
 
   handleMulClick= (props) => {
-    this.setState({showMultiplication: true, showAddition:false,showSubstraction: false})
+    this.setState({showMultiplication: true,showComparison: false, showAddition:false,showSubstraction: false})
   }
 
   handleSubClick= (props) => {
-    this.setState({showSubstraction: true, showMultiplication: false, showAddition:false})
+    this.setState({showComparison: false,showSubstraction: true, showMultiplication: false, showAddition:false})
+  }
+
+  handleCompClick= (props) => {
+    this.setState({showComparison: true,showSubstraction: false, showMultiplication: false, showAddition:false})
   }
 
   render(){
-    const { showAddition,showMultiplication, showSubstraction } = this.state
+    const { showAddition,showMultiplication, showSubstraction, showComparison } = this.state
  return (
  <div className="App">
    <header className="row App-header">
@@ -227,25 +278,30 @@ export default class App extends React.Component {
     KIDS MATHS
     </p>
     <div>
-    <div  className="row ">
+    <div  className="row btn-group">
       <div className="col-xs-1"></div>
-      <div className="col-xs-2 ">
+      <div className="col-xs-1 ">
       <button className="btn btn-lg offset-1" onClick={this.handleAddClick}> + </button>
       </div>
       <div className="col-xs-1"></div>
-      <div className="col-xs-2">
+      <div className="col-xs-1">
         <button className="btn btn-lg  offset-1" onClick={this.handleMulClick}> X </button>
       </div>
       <div className="col-xs-1"></div>
-      <div className="col-xs-2">
+      <div className="col-xs-1">
         <button className="btn btn-lg  offset-1" onClick={this.handleSubClick}> - </button>
+      </div>
+      <div className="col-xs-1"></div>
+      <div className="col-xs-1">
+        <button className="btn btn-lg offset-1" onClick={this.handleCompClick}>&gt;=&lt;</button>
       </div>
     </div>
     </div>
 
-    {showAddition && <Addition url='/Addition'/>}
-    {showMultiplication && <Multiplication url='/Multiplication'/>}
-    {showSubstraction && <Substraction url='/Substraction'/>}
+    {showAddition && <Addition />}
+    {showMultiplication && <Multiplication />}
+    {showSubstraction && <Substraction />}
+    {showComparison && <Comparison />}
    </header>
 
  </div>
@@ -275,4 +331,14 @@ return (
     </header>
   </div>
 );
+
+
+
+<input className="resbox"
+       value={this.state.result}
+       onChange={event => this.setState({result: event.target.value})}
+       required
+ />
+
+
 */
