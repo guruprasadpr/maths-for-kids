@@ -9,21 +9,21 @@ function getRandom(min, max) {
 
 const addInp = function(){
   return {
-    value1 : getRandom(0,10),
-    value2 : getRandom(0,10)
+    value1 : getRandom(1,20),
+    value2 : getRandom(0,9)
   }
 }
 
   const mulInp = function(){
     return {
-      value1 : getRandom(2,5),
+      value1 : getRandom(2,6),
       value2 : getRandom(3,10)
     }
   }
 
     const subInp = function(){
-      var v1 = getRandom(1,10)
-      var v2 = getRandom(0,v1)
+      var v1 = getRandom(1,20)
+      var v2 = getRandom(1,v1)
       return {
         value1 : v1,
         value2 : v2
