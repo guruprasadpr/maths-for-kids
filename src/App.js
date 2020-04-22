@@ -16,7 +16,7 @@ const addInp = function(){
 
   const mulInp = function(){
     return {
-      value1 : getRandom(2,6),
+      value1 : getRandom(2,10),
       value2 : getRandom(3,10)
     }
   }
